@@ -1,7 +1,7 @@
 import last from 'lodash/last'
 import useSWR, { SWRConfiguration } from 'swr'
 import useSWRInfinite, { SWRInfiniteConfiguration } from 'swr/infinite'
-import { jsonFetcher } from 'utils/fetcher'
+import { jsonFetcher, stcScanFetcher } from 'utils/fetcher'
 import { jsonRpc } from 'utils/json-rpc'
 import useNetwork from './use-network'
 
@@ -61,4 +61,11 @@ export function useLatestTransactions(config?: SWRConfiguration) {
     },
     config,
   )
+}
+
+export function useBlockByHeight(height?: bigint) {
+  const network = useNetwork()
+  return useSWR<{
+    body: { Full: []; header: {} }
+  }>(height ? `/block/${network}/height/${height}` : null, stcScanFetcher)
 }

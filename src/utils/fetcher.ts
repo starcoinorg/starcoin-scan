@@ -17,3 +17,11 @@ export async function jsonFetcher<T>(input: RequestInfo): Promise<T> {
   }
   throw new HTTPError(response.status, response.statusText)
 }
+
+export async function stcScanFetcher<T>(path: string): Promise<T> {
+  const response = await fetch(`https://api.stcscan.io/v2${path}`)
+  if (response.ok) {
+    return response.json()
+  }
+  throw new HTTPError(response.status, response.statusText)
+}
