@@ -110,7 +110,7 @@ export default function Layout(props: { children?: ReactNode }) {
             mr={2}
             display={{ base: 'none', xl: 'inline-flex' }}
           >
-            StarAtlas
+            StcScan
           </Button>
         </Link>
         <Link href={`/${network}/blocks`} passHref={true}>

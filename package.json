@@ -1,5 +1,5 @@
 {
-  "name": "staratlas",
+  "name": "starcoin-scan",
   "version": "0.1.0",
   "scripts": {
     "dev": "next",
@@ -7,8 +7,7 @@
     "build": "next build",
     "export": "next export",
     "format": "prettier --config .prettierrc.json --write .",
-    "lint": "eslint .",
-    "maintenance": "node maintenance.js"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.14",
