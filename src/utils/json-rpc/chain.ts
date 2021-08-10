@@ -1,12 +1,6 @@
 import { Type } from '@sinclair/typebox'
 import { RPC_BLOCK_LIMIT } from 'utils/constants'
-
-export const ChainId = Type.Union([
-  Type.Literal(1),
-  Type.Literal(2),
-  Type.Literal(251),
-  Type.Literal(253),
-])
+import { ChainId } from 'utils/types'
 
 export const TransactionBlockInfo = Type.Object({
   block_hash: Type.String(),
