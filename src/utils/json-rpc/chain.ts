@@ -1,6 +1,13 @@
 import { Type } from '@sinclair/typebox'
 import { RPC_BLOCK_LIMIT } from 'utils/constants'
 
+export const ChainId = Type.Union([
+  Type.Literal(1),
+  Type.Literal(2),
+  Type.Literal(251),
+  Type.Literal(253),
+])
+
 export const TransactionBlockInfo = Type.Object({
   block_hash: Type.String(),
   block_number: Type.String(),
@@ -9,14 +16,14 @@ export const TransactionBlockInfo = Type.Object({
 })
 
 export const RawUserTransaction = Type.Object({
-  sender: Type.String(),
-  sequence_number: Type.String(),
-  payload: Type.String(),
-  max_gas_amount: Type.String(),
-  gas_unit_price: Type.String(),
-  gas_token_code: Type.String(),
+  chain_id: ChainId,
   expiration_timestamp_secs: Type.String(),
-  chain_id: Type.Integer(),
+  gas_token_code: Type.String(),
+  gas_unit_price: Type.String(),
+  max_gas_amount: Type.String(),
+  payload: Type.String(),
+  sequence_number: Type.String(),
+  transaction_hash: Type.String(),
 })
 
 export const TransactionAuthenticator = Type.Union([
@@ -42,7 +49,7 @@ export const SignedUserTransaction = Type.Object({
 
 export const BlockMetadata = Type.Object({
   author: Type.String(),
-  chain_id: Type.Integer(),
+  chain_id: ChainId,
   number: Type.String(),
   parent_gas_used: Type.String(),
   parent_hash: Type.String(),
@@ -63,7 +70,7 @@ export const BlockHeader = Type.Object({
   difficulty: Type.String(),
   nonce: Type.Integer(),
   body_hash: Type.String(),
-  chain_id: Type.Integer(),
+  chain_id: ChainId,
 })
 
 export const BlockSummary = Type.Object({
@@ -209,7 +216,7 @@ export const AccumulatorInfo = Type.Object({
 })
 
 export const ChainInfo = Type.Object({
-  chain_id: Type.Integer(),
+  chain_id: ChainId,
   genesis_hash: Type.String(),
   head: BlockHeader,
   block_info: Type.Object({
